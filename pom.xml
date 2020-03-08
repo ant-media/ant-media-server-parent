@@ -233,6 +233,10 @@
 					<fork>true</fork>
 					<release>11</release>
 					<executable>${maven.compiler.executable}</executable>
+					<compilerVersion>11</compilerVersion>
+					<fork>true</fork>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -326,7 +330,7 @@
 				<version>2.22.0</version>
 				<configuration>
 					<argLine>
-						--illegal-access=permit
+						--add-opens --illegal-access=permit
 					</argLine>
 					<skipTests>${skipTests}</skipTests>
 				</configuration>
