@@ -231,9 +231,7 @@
 				<version>3.8.0</version>
 				<configuration>
 					<fork>true</fork>
-					<configuration>
-						<release>11</release>
-					</configuration>
+					<release>11</release>
 					<executable>${maven.compiler.executable}</executable>
 				</configuration>
 			</plugin>
