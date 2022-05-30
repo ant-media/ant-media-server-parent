@@ -114,7 +114,7 @@
 		<protobuf-java.version>3.12.4</protobuf-java.version>
 		<morphia.version>2.3.0-SNAPSHOT</morphia.version>
 		<json-simple.version>1.1.1</json-simple.version>
-		<owasp.version>6.5.1</owasp.version>
+		<owasp.version>7.1.0</owasp.version>
 		
     </properties>
     <repositories>
