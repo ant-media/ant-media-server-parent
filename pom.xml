@@ -96,9 +96,10 @@
         <cors-filter.version>2.5</cors-filter.version>
 		<servlet.version>2.5</servlet.version>
 		<maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
-		<javacpp.ffmpeg.version>4.3.2-1.5.5</javacpp.ffmpeg.version>
-		<javacpp.cuda.version>11.2-8.1-1.5.5</javacpp.cuda.version>
-		<javacpp.srt.version>1.4.4-1.5.5</javacpp.srt.version>
+		<javacpp.version>1.5.5</javacpp.version>
+		<javacpp.ffmpeg.version>4.3.2-${javacpp.version}</javacpp.ffmpeg.version>
+		<javacpp.cuda.version>11.2-8.1-${javacpp.version}</javacpp.cuda.version>
+		<javacpp.srt.version>1.4.4-${javacpp.version}</javacpp.srt.version>
 		<jersey.version>2.31</jersey.version>
 		<jackson-databind.version>2.13.3</jackson-databind.version>
 		<mapdb.version>3.0.8</mapdb.version>
@@ -251,9 +252,13 @@
 			    <artifactId>kafka-streams</artifactId>
 			    <version>${kafka-streams.version}</version>
        		</dependency>
+			<dependency>
+			    <groupId>org.bytedeco</groupId>
+			    <artifactId>javacpp</artifactId>
+			    <version>${javacpp.version}</version>
+       		</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 
 		<plugins>
