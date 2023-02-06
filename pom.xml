@@ -99,7 +99,7 @@
 		<javacpp.version>1.5.8</javacpp.version>
 		<javacpp.ffmpeg.version>5.1.2-${javacpp.version}</javacpp.ffmpeg.version>
 		<javacpp.cuda.version>11.8-8.6-${javacpp.version}</javacpp.cuda.version>
-		<javacpp.srt.version>1.4.4-1.5.5</javacpp.srt.version>
+		<javacpp.srt.version>1.5.1-${javacpp.version}</javacpp.srt.version>
 		<jersey.version>2.31</jersey.version>
 		<jackson-databind.version>2.13.3</jackson-databind.version>
 		<mapdb.version>3.0.8</mapdb.version>
