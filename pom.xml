@@ -106,7 +106,7 @@
 		<vertx-core.version>4.2.3</vertx-core.version>
 		<enunciate.version>2.13.1</enunciate.version>	
 		<jsr305.version>3.0.2</jsr305.version>      
-		<kafka-streams.version>2.2.1</kafka-streams.version>
+		<kafka-streams.version>3.4.0</kafka-streams.version>
 		<openjfx.graphics.version>11.0.2</openjfx.graphics.version>
 		<guava.lib.version>29.0-jre</guava.lib.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
