@@ -120,7 +120,7 @@
 		<selenium-java.version>4.11.0</selenium-java.version>
 		<webdrivermanager.version>5.4.1</webdrivermanager.version>
 		<netty.version>4.1.87.Final</netty.version>
-		
+		<redisson.version>3.24.1</redisson.version>
     </properties>
     <repositories>
         <repository>
