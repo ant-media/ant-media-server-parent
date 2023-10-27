@@ -117,10 +117,9 @@
 		<morphia.version>2.3.2</morphia.version>
 		<json-simple.version>1.1.1</json-simple.version>
 		<owasp.version>6.5.1</owasp.version>
-		<selenium-java.version>4.14.1</selenium-java.version>
+		<selenium-java.version>4.13.0</selenium-java.version>
 		<webdrivermanager.version>5.5.3</webdrivermanager.version>
-		<selenium-http-jdk-client.version>4.13.0</selenium-http-jdk-client.version>
-		<netty.version>4.1.87.Final</netty.version>
+		<netty.version>4.1.100.Final</netty.version>
 		<redisson.version>3.24.1</redisson.version>
     </properties>
     <repositories>
