@@ -45,17 +45,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <developerConnection>scm:git:git@github.com:antmedia/Ant-Media-Server-Parent.git</developerConnection>
     </scm>
     <developers>
-        <developer>
-            <id>Ahmet Oguz Mermerkaya</id>
-            <email>mekya@antmedia.io</email>
-        </developer>
-        <developer>
-            <id>Davut Cavdar</id>
-            <email>david@antmedia.io</email>
-        </developer>
-        <developer>
-            <id>Selim Emre Toy</id>
-            <email>selim@antmedia.io</email>
+    	<developer>
+            <id>Ant Media</id>
+            <email>contact@antmedia.io</email>
         </developer>
     </developers>
     <properties>
@@ -78,7 +70,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <spring.version>6.0.13</spring.version>
         <mina.version>2.0.21</mina.version>
         <slf4j.version>2.0.9</slf4j.version>
-        <logback.version>1.4.11</logback.version>
+        <logback.version>1.4.10</logback.version>
         <quartz.version>2.5.0-rc1</quartz.version>
         <bc.version>1.77</bc.version>
         <junit.version>4.13.2</junit.version>
