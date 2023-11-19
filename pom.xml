@@ -115,6 +115,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
 		<maven-scm-plugin.version>2.0.1</maven-scm-plugin.version>
 		<maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
+		<tyrus.version>2.1.4</tyrus.version>
     </properties>
     <repositories>
         <repository>
