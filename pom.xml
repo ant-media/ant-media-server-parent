@@ -240,6 +240,21 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			    <artifactId>javacpp</artifactId>
 			    <version>${javacpp.version}</version>
        		</dependency>
+       		<dependency>
+            	<groupId>org.glassfish.tyrus</groupId>
+            	<artifactId>tyrus-server</artifactId>
+            	<version>${tyrus.version}</version>
+        	</dependency>
+         	<dependency>
+            	<groupId>org.glassfish.tyrus</groupId>
+            	<artifactId>tyrus-container-grizzly-server</artifactId>
+            	<version>${tyrus.version}</version>
+         	</dependency>
+         	<dependency>
+				<groupId>org.glassfish.tyrus.bundles</groupId>
+				<artifactId>tyrus-standalone-client</artifactId>
+				<version>${tyrus.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
