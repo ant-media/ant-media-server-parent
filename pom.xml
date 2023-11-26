@@ -95,7 +95,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<kafka-streams.version>3.6.0</kafka-streams.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
 		<httpmime.version>4.5.14</httpmime.version>
-		<mockito-core.version>3.12.4</mockito-core.version>
+		<mockito-core.version>5.7.0</mockito-core.version>
 		<awaitility.version>4.2.0</awaitility.version>
 		<protobuf-java.version>3.25.1</protobuf-java.version>
 		<morphia.version>2.4.7</morphia.version>
