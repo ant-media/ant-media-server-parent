@@ -1,7 +1,7 @@
-dist: focal
+dist: jammy
 language: java
 jdk:
-- openjdk11
+- openjdk17
 sudo: false
 env:
   global:
@@ -13,7 +13,10 @@ before_install:
 
 install:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V --quiet
-script: 
+
+script:
+- ls #just fix syntax error
+
 cache:
   directories:
   - "$HOME/.m2/repository"
