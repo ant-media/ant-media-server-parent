@@ -95,7 +95,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<kafka-streams.version>3.6.0</kafka-streams.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
 		<httpmime.version>4.5.14</httpmime.version>
-		<mockito-core.version>3.12.4</mockito-core.version>
+		<mockito-core.version>5.8.0</mockito-core.version>
 		<awaitility.version>4.2.0</awaitility.version>
 		<protobuf-java.version>3.25.1</protobuf-java.version>
 		<morphia.version>2.4.7</morphia.version>
@@ -112,7 +112,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<aws-java-sdk-bom.version>1.12.238</aws-java-sdk-bom.version>
 		<maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
 		<maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
-		<maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>3.2.3</maven-surefire-plugin.version>
 		<maven-scm-plugin.version>2.0.1</maven-scm-plugin.version>
 		<maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
 		<tyrus.version>2.1.4</tyrus.version>
