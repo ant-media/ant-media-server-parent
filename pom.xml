@@ -106,7 +106,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<netty.version>4.1.101.Final</netty.version>
 		<redisson.version>3.24.3</redisson.version>
 		<gson.version>2.10.1</gson.version>
-		<swagger-jersey2-jaxrs.version>1.6.11</swagger-jersey2-jaxrs.version>
 		<jwks-rsa.version>0.22.1</jwks-rsa.version>
 		<java-jwt.version>4.4.0</java-jwt.version>
 		<aws-java-sdk-bom.version>1.12.683</aws-java-sdk-bom.version>
@@ -118,6 +117,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<tyrus.version>2.1.4</tyrus.version>
 		<firebase.version>9.2.0</firebase.version>
 		<pushy.version>0.15.4</pushy.version>
+		<swagger-jaxrs2-jakarta.version>2.2.7</swagger-jaxrs2-jakarta.version>
+
     </properties>
     <repositories>
         <repository>
