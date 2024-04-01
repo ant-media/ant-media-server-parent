@@ -117,7 +117,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<tyrus.version>2.1.4</tyrus.version>
 		<firebase.version>9.2.0</firebase.version>
 		<pushy.version>0.15.4</pushy.version>
-		<swagger-jaxrs2-jakarta.version>2.2.7</swagger-jaxrs2-jakarta.version>
+		<swagger-jaxrs2-jakarta.version>2.2.21</swagger-jaxrs2-jakarta.version>
 
     </properties>
     <repositories>
