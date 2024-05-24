@@ -73,6 +73,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <logback.version>1.5.3</logback.version>
         <quartz.version>2.5.0-rc1</quartz.version>
         <bc.version>1.77</bc.version>
+        <junit5.version>5.10.2</junit5.version>
         <junit.version>4.13.2</junit.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-codec.version>1.16.0</commons-codec.version>
@@ -95,10 +96,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<kafka-streams.version>3.6.0</kafka-streams.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
 		<httpmime.version>4.5.14</httpmime.version>
-		<mockito-core.version>5.11.0</mockito-core.version>
+		<mockito-core.version>5.12.0</mockito-core.version>
 		<awaitility.version>4.2.0</awaitility.version>
 		<protobuf-java.version>3.25.1</protobuf-java.version>
-		<morphia.version>2.4.7</morphia.version>
+		<morphia.version>2.4.13</morphia.version>
 		<json-simple.version>1.1.1</json-simple.version>
 		<owasp.version>8.4.3</owasp.version>
 		<selenium-java.version>4.18.1</selenium-java.version>
@@ -226,12 +227,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<artifactId>mina-parent</artifactId>
 				<version>${mina.version}</version>
 				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 			    <groupId>org.apache.kafka</groupId>
