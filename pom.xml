@@ -72,7 +72,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.5.3</logback.version>
         <quartz.version>2.5.0-rc1</quartz.version>
-        <bc.version>1.77</bc.version>
+        <bc.version>1.78.1</bc.version>
         <junit5.version>5.10.2</junit5.version>
         <junit.version>4.13.2</junit.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
@@ -116,7 +116,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<maven-scm-plugin.version>2.0.1</maven-scm-plugin.version>
 		<maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
 		<tyrus.version>2.1.4</tyrus.version>
-		<firebase.version>9.2.0</firebase.version>
+		<firebase.version>9.3.0</firebase.version>
 		<pushy.version>0.15.4</pushy.version>
 		<swagger-jaxrs2-jakarta.version>2.2.21</swagger-jaxrs2-jakarta.version>
 
