@@ -67,7 +67,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
-        <spring.version>6.2.7</spring.version>
+        <spring.version>6.2.0</spring.version>
         <mina.version>2.0.25</mina.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.5.3</logback.version>
@@ -89,7 +89,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.cuda.version>12.6-9.3-${javacpp.version}</javacpp.cuda.version>
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
 		<jersey.version>3.1.3</jersey.version>
-		<jackson-databind.version>2.15.3</jackson-databind.version>
+		<jackson-databind.version>2.18.1</jackson-databind.version>
 		<mapdb.version>3.0.10</mapdb.version>
 		<vertx-core.version>4.5.10</vertx-core.version>
 		<jsr305.version>3.0.2</jsr305.version>      
