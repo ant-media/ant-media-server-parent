@@ -53,7 +53,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode | gpg --batch --import
+          echo "allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -70,6 +74,8 @@ jobs:
       - name: Deploy Snapshot
         if: startsWith(github.ref, 'refs/heads/') && contains(steps.get_version.outputs.version, 'SNAPSHOT')
         run: mvn deploy -DskipTests --quiet --settings mvn-settings.xml
+        env:
+          GPG_TTY: ''
 
       - name: Deploy Release
         if: startsWith(github.ref, 'refs/tags/ams-v')
