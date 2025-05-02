@@ -42,7 +42,6 @@ jobs:
       - name: Build Ant Media Server Parent project
         run: |
           ls -alh
-          cd ant-media-server-parent
           mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip=true --quiet
           cd ..
 
