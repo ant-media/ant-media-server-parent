@@ -9,20 +9,10 @@ on:
   pull_request:
     branches:
       - '**'
-  
-env:
-  RUNNER: ubuntu-22.04      
 
 jobs:
   run-test:
     runs-on: ubuntu-22.04
-    env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_HOST_URL: https://sonarcloud.io     
-      CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
-      GPG_KEY_NAME: ${{ secrets.GPG_KEY_NAME }}
-      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     steps:
       - name: Checkout code
@@ -43,12 +33,14 @@ jobs:
       - name: Build Ant Media Server Parent project
         run: |
           ls -alh
-          mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip=true --quiet
+          mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V --quiet
           cd ..
 
   deploy:
     runs-on: ubuntu-22.04
     needs: run-test
+    env:
+      GPG_TTY: $(tty)
     if: github.event_name == 'push'
     steps:
       - name: Checkout code
@@ -63,15 +55,22 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --yes --import
+          gpg --list-keys
+
       - name: Get Maven project version
         id: get_version
         run: echo "version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)" >> "$GITHUB_OUTPUT"
 
       - name: Deploy Snapshot
         if: startsWith(github.ref, 'refs/heads/') && contains(steps.get_version.outputs.version, 'SNAPSHOT')
-        run: mvn deploy -DskipTests --quiet --settings mvn-settings.xml
+        run: mvn deploy -DskipTests -Dgpg.batch=true --quiet --settings mvn-settings.xml
         env:
-          GPG_TTY: ''
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Deploy Release
         if: startsWith(github.ref, 'refs/tags/ams-v')
