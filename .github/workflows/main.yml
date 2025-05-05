@@ -60,12 +60,7 @@ jobs:
           echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --yes --import
           gpg --list-keys
 
-      - name: Get Maven project version
-        id: get_version
-        run: echo "version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)" >> "$GITHUB_OUTPUT"
-
       - name: Deploy Snapshot
-        if: startsWith(github.ref, 'refs/heads/') && contains(steps.get_version.outputs.version, 'SNAPSHOT')
         run: mvn deploy -DskipTests -Dgpg.batch=true --quiet --settings mvn-settings.xml
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
