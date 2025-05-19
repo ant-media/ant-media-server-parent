@@ -104,7 +104,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<json-simple.version>1.1.1</json-simple.version>
 		<owasp.version>8.4.3</owasp.version>
 		<selenium-java.version>4.18.1</selenium-java.version>
-		<webdrivermanager.version>5.7.0</webdrivermanager.version>
+		<webdrivermanager.version>6.1.0</webdrivermanager.version>
 		<netty.version>4.1.118.Final</netty.version>
 		<redisson.version>3.24.3</redisson.version>
 		<gson.version>2.10.1</gson.version>
