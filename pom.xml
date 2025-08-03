@@ -90,7 +90,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<httpmime.version>4.5.14</httpmime.version>
 		<mockito-core.version>5.12.0</mockito-core.version>
 		<awaitility.version>4.2.0</awaitility.version>
-		<protobuf-java.version>4.29.3</protobuf-java.version>
+		<protobuf-java.version>3.25.8</protobuf-java.version>
 		<morphia.version>2.4.13</morphia.version>
 		<json-simple.version>1.1.1</json-simple.version>
 		<owasp.version>8.4.3</owasp.version>
