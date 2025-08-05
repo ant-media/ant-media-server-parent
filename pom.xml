@@ -134,16 +134,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		      <enabled>true</enabled>
 		    </snapshots>
  		</repository>
-        <repository>
-            <id>sonatype-snapshots</id>
-            <name>Sonatype Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-        <repository>
-            <id>sonatype-releases</id>
-            <name>Sonatype Releases</name>
-            <url>https://oss.sonatype.org/content/repositories/releases</url>
-        </repository>
+          <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>central-repo</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>   
     </repositories>
     <dependencyManagement>
         <dependencies>
@@ -306,6 +304,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		          <extensions>true</extensions>
 		          <configuration>
 		            <publishingServerId>central</publishingServerId>
+		             <autoPublish>true</autoPublish>
+            		 <waitUntil>published</waitUntil>
 		          </configuration>
 	        </plugin>
 			<plugin>
