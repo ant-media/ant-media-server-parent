@@ -58,7 +58,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
-        <spring.version>6.2.8</spring.version>
+        <spring.version>6.2.11</spring.version>
         <spring-security-core.version>6.3.8</spring-security-core.version>
         <mina.version>2.0.27</mina.version>
         <slf4j.version>2.0.9</slf4j.version>
