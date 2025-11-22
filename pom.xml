@@ -250,6 +250,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			    <artifactId>netty-codec-http2</artifactId>
 			    <version>${netty.version}</version>
 			</dependency>
+			<dependency>
+			    <groupId>io.netty</groupId>
+			    <artifactId>netty-codec-http</artifactId>
+			    <version>${netty.version}</version>
+			</dependency>
 
 			<!-- nimbus dependecies-->
 			<dependency>
