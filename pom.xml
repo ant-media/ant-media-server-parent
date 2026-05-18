@@ -64,7 +64,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.5.25</logback.version>
         <quartz.version>2.5.0-rc1</quartz.version>
-        <bc.version>1.78.1</bc.version>
+        <bc.version>1.84</bc.version>
         <junit5.version>5.10.2</junit5.version>
         <junit.version>4.13.2</junit.version>
         <commons-beanutils.version>1.11.0</commons-beanutils.version>
@@ -96,7 +96,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<owasp.version>8.4.3</owasp.version>
 		<selenium-java.version>4.18.1</selenium-java.version>
 		<webdrivermanager.version>6.1.0</webdrivermanager.version>
-		<netty.version>4.1.132.Final</netty.version>
+		<netty.version>4.1.133.Final</netty.version>
 		<redisson.version>3.24.3</redisson.version>
 		<gson.version>2.10.1</gson.version>
 		<jwks-rsa.version>0.22.1</jwks-rsa.version>
@@ -253,6 +253,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<dependency>
 			    <groupId>io.netty</groupId>
 			    <artifactId>netty-codec-http</artifactId>
+			    <version>${netty.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.netty</groupId>
+			    <artifactId>netty-codec-dns</artifactId>
 			    <version>${netty.version}</version>
 			</dependency>
 
