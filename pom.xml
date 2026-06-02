@@ -327,6 +327,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 						<configuration>
 							<!-- Override Java 11 compiler settings inherited from the Red5 parent pom. -->
 							<release>${java.version}</release>
+                            <!-- Override unnecessary verbose output from the Red5 parent pom. -->
+                            <verbose>false</verbose>
+                            <fork>false</fork>
 							<jdkToolchain>
 								<version>${java.version}</version>
 							</jdkToolchain>
