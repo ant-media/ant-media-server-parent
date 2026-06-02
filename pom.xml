@@ -321,6 +321,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 					<release>${java.version}</release>
 					<fork>true</fork>
 				</configuration>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<configuration>
+							<!-- Override Java 11 compiler settings inherited from the Red5 parent pom. -->
+							<release>${java.version}</release>
+							<jdkToolchain>
+								<version>${java.version}</version>
+							</jdkToolchain>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
@@ -346,7 +358,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 					</execution>
 				</executions>
 				<configuration>
-					<verbose>true</verbose>
+					<verbose>false</verbose>
 					<failOnError>false</failOnError>
 					<sourcepath>${basedir}/src/main/java</sourcepath>
 					<includeDependencySources>false</includeDependencySources>
