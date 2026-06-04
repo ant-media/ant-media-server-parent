@@ -315,29 +315,31 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             		 <waitUntil>published</waitUntil>
 		          </configuration>
 	        </plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<release>${java.version}</release>
-					<fork>true</fork>
-				</configuration>
-				<executions>
-					<execution>
-						<id>default-compile</id>
-						<configuration>
-							<!-- Override Java 11 compiler settings inherited from the Red5 parent pom. -->
-							<release>${java.version}</release>
-                            <!-- Override unnecessary verbose output from the Red5 parent pom. -->
-                            <verbose>false</verbose>
-                            <fork>false</fork>
-							<jdkToolchain>
-								<version>${java.version}</version>
-							</jdkToolchain>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<release>${java.version}</release>
+						<verbose>false</verbose>
+						<fork>false</fork>
+						<jdkToolchain>
+							<version>${java.version}</version>
+						</jdkToolchain>
+					</configuration>
+					<executions>
+						<execution>
+							<id>default-compile</id>
+							<configuration>
+								<release>${java.version}</release>
+								<verbose>false</verbose>
+								<fork>false</fork>
+								<jdkToolchain>
+									<version>${java.version}</version>
+								</jdkToolchain>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>${maven-source-plugin.version}</version>
