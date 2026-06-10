@@ -58,7 +58,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
-        <spring.version>6.2.17</spring.version>
+        <spring.version>6.2.19</spring.version>
         <spring-security-core.version>6.5.9</spring-security-core.version>
         <mina.version>2.0.28</mina.version>
         <slf4j.version>2.0.9</slf4j.version>
@@ -96,7 +96,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<owasp.version>12.2.2</owasp.version>
 		<selenium-java.version>4.18.1</selenium-java.version>
 		<webdrivermanager.version>6.1.0</webdrivermanager.version>
-		<netty.version>4.1.133.Final</netty.version>
+		<netty.version>4.2.13.Final</netty.version>
 		<redisson.version>3.24.3</redisson.version>
 		<gson.version>2.10.1</gson.version>
 		<jwks-rsa.version>0.22.1</jwks-rsa.version>
@@ -243,22 +243,30 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<artifactId>spring-security-oauth2-authorization-server</artifactId>
 				<version>1.4.0</version>
 			</dependency>
+			<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-oauth2-core</artifactId>
+			    <version>${spring-security-core.version}</version>
+			</dependency>
 
-			<!-- Netty dependecies -->
+			<!-- Align all Netty artifacts (pushy, redisson, vertx, etc.) to a single version -->
 			<dependency>
-			    <groupId>io.netty</groupId>
-			    <artifactId>netty-codec-http2</artifactId>
-			    <version>${netty.version}</version>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-bom</artifactId>
+				<version>${netty.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.protobuf</groupId>
+				<artifactId>protobuf-java</artifactId>
+				<version>${protobuf-java.version}</version>
 			</dependency>
 			<dependency>
-			    <groupId>io.netty</groupId>
-			    <artifactId>netty-codec-http</artifactId>
-			    <version>${netty.version}</version>
-			</dependency>
-			<dependency>
-			    <groupId>io.netty</groupId>
-			    <artifactId>netty-codec-dns</artifactId>
-			    <version>${netty.version}</version>
+				<groupId>com.google.protobuf</groupId>
+				<artifactId>protobuf-java-util</artifactId>
+				<version>${protobuf-java.version}</version>
 			</dependency>
 
 			<!-- nimbus dependecies-->
@@ -277,6 +285,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-oauth2-jose</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-oauth2-resource-server</artifactId>
 				<version>${spring-security-core.version}</version>
 			</dependency>
 			<dependency>
