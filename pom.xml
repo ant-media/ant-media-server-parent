@@ -82,7 +82,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
 		<jersey.version>3.1.11</jersey.version>
 		<jackson-databind.version>2.18.6</jackson-databind.version>
-		<mapdb.version>3.0.10</mapdb.version>
+		<mapdb.version>3.1.0</mapdb.version>
 		<vertx-core.version>4.5.24</vertx-core.version>
 		<jsr305.version>3.0.2</jsr305.version>      
 		<kafka-streams.version>3.9.1</kafka-streams.version>
