@@ -63,10 +63,9 @@
     <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skipTests>true</skipTests>
-    <maven.test.skip>false</maven.test.skip>
     <spring.version>6.2.19</spring.version>
     <spring-boot.version>3.5.12</spring-boot.version>
-    <spring-security-core.version>6.5.9</spring-security-core.version>
+    <spring-security-core.version>6.5.11</spring-security-core.version>
     <mina.version>2.0.28</mina.version>
     <slf4j.version>2.0.9</slf4j.version>
     <logback.version>1.5.25</logback.version>
@@ -87,7 +86,6 @@
     <javacpp.ffmpeg.version>7.1-${javacpp.version}</javacpp.ffmpeg.version>
     <javacpp.cuda.version>12.6-9.5-${javacpp.version}</javacpp.cuda.version>
     <javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
-    <javacpp.ndi.version>6.0.0-1.5.13</javacpp.ndi.version>
     <jersey.version>3.1.11</jersey.version>
     <jackson-databind.version>2.18.6</jackson-databind.version>
     <mapdb.version>3.0.10</mapdb.version>
@@ -104,7 +102,7 @@
     <owasp.version>12.2.2</owasp.version>
     <selenium-java.version>4.18.1</selenium-java.version>
     <webdrivermanager.version>6.1.0</webdrivermanager.version>
-    <netty.version>4.2.13.Final</netty.version>
+    <netty.version>4.2.15.Final</netty.version>
     <redisson.version>3.24.3</redisson.version>
     <gson.version>2.10.1</gson.version>
     <jwks-rsa.version>0.22.1</jwks-rsa.version>
@@ -183,11 +181,53 @@
         <version>${red5-io.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
         <exclusions>
           <exclusion>
             <groupId>commons-logging</groupId>
@@ -225,6 +265,7 @@
         <artifactId>spring-security-oauth2-core</artifactId>
         <version>${spring-security-core.version}</version>
       </dependency>
+
       <!-- Align all Netty artifacts (pushy, redisson, vertx, etc.) to a single version -->
       <dependency>
         <groupId>io.netty</groupId>
@@ -233,6 +274,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
       <dependency>
         <groupId>com.google.protobuf</groupId>
         <artifactId>protobuf-java</artifactId>
@@ -243,12 +285,14 @@
         <artifactId>protobuf-java-util</artifactId>
         <version>${protobuf-java.version}</version>
       </dependency>
+
       <!-- nimbus dependecies-->
       <dependency>
         <groupId>com.nimbusds</groupId>
         <artifactId>nimbus-jose-jwt</artifactId>
         <version>10.0.2</version>
       </dependency>
+
       <!-- OAuth2 dependencies -->
       <dependency>
         <groupId>org.springframework.security</groupId>
@@ -304,6 +348,7 @@
     </dependencies>
   </dependencyManagement>
   <build>
+
     <plugins>
       <plugin>
         <groupId>org.sonatype.central</groupId>
@@ -461,6 +506,7 @@
           <goals>deploy</goals>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
