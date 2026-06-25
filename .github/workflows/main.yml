@@ -13,47 +13,91 @@ on:
 jobs:
   run-test:
     runs-on: ubuntu-22.04
+    container: maven:3.9.16-eclipse-temurin-17
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-            
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'adopt'
-          java-version: '17'
-          cache: 'maven'
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        uses: actions/checkout@v6
 
-      - run: sudo apt-get update -qq
-      - run: sudo apt-get install ffmpeg -qq -y
+      - name: Cache Maven repository
+        uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
 
       - name: Build Ant Media Server Parent project
         run: |
-          ls -alh
-          mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V --quiet
-          cd ..
+          mvn -version
+          mvn install -Dgpg.skip=true -B -V
 
   deploy:
     runs-on: ubuntu-22.04
+    container: maven:3.9.16-eclipse-temurin-17
     needs: run-test
-    env:
-      GPG_TTY: $(tty)
-      
+    if: >-
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/ams-v')) ||
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')) ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/checkout@v6
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'maven'
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          fetch-depth: 0
+
+      - name: Verify release tag is on master
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/ams-v')
+        shell: bash
+        run: |
+          git fetch origin master --no-tags
+
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/master; then
+            echo "Release tag ${GITHUB_REF_NAME} points to ${GITHUB_SHA}, which is not reachable from origin/master."
+            exit 1
+          fi
+
+      - name: Cache Maven repository
+        uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      - name: Resolve Maven revision
+        id: revision
+        shell: bash
+        run: |
+          revision="$(mvn help:evaluate -Dexpression=revision -q -DforceStdout)"
+
+          if [[ "${{ github.event_name }}" == "push" && "${GITHUB_REF}" == refs/tags/ams-v* ]]; then
+            revision="${GITHUB_REF_NAME#ams-v}"
+          elif [[ "${{ github.event_name }}" == "push" && "${GITHUB_REF}" == refs/heads/* ]]; then
+            base_revision="${revision%-SNAPSHOT}"
+            branch_name="${GITHUB_REF_NAME}"
+            branch_name="$(printf '%s' "$branch_name" | sed -E 's#^(feature|bugfix)/##I')"
+            qualifier="$(printf '%s' "$branch_name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9._-]+/-/g; s/^-+//; s/-+$//')"
+
+            if [[ -z "$qualifier" ]]; then
+              qualifier="branch-${GITHUB_SHA::8}"
+            fi
+
+            revision="${base_revision}-${qualifier}-SNAPSHOT"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            base_revision="${revision%-SNAPSHOT}"
+            branch_name="${GITHUB_HEAD_REF}"
+            branch_name="$(printf '%s' "$branch_name" | sed -E 's#^(feature|bugfix)/##I')"
+            qualifier="$(printf '%s' "$branch_name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9._-]+/-/g; s/^-+//; s/-+$//')"
+
+            if [[ -z "$qualifier" ]]; then
+              qualifier="pr-${{ github.event.pull_request.number }}"
+            fi
+
+            revision="${base_revision}-${qualifier}-SNAPSHOT"
+          fi
+
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+          echo "Resolved Maven revision: $revision"
 
       - name: Import GPG key
         run: |
@@ -61,10 +105,8 @@ jobs:
           gpg --list-keys
 
       - name: Deploy
-        run: mvn deploy -DskipTests -Dgpg.batch=true --quiet --settings mvn-settings.xml
+        run: mvn deploy -Drevision=${{ steps.revision.outputs.revision }} -Dgpg.batch=true --quiet --settings mvn-settings.xml
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-
-
