@@ -11,11 +11,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <description>Ant Media Server Parent Project</description>
     <url>https://github.com/antmedia/Ant-Media-Server</url>
     <inceptionYear>2016</inceptionYear>
-    <parent>
-		<groupId>org.red5</groupId>
-		<artifactId>red5-parent</artifactId>
-		<version>1.2.3</version>
-	</parent>
 	<organization>
 		<name>Ant Media</name>
 		<url>https://github.com/antmedia</url>
@@ -30,9 +25,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	</licenses>
     
     <scm>
-        <url>https://github.com/antmedia/Ant-Media-Server</url>
-        <connection>scm:git:git@antmedia/Ant-Media-Server-Parent.git</connection>
-        <developerConnection>scm:git:git@github.com:antmedia/Ant-Media-Server-Parent.git</developerConnection>
+        <url>https://github.com/ant-media/ant-media-server-parent</url>
+        <connection>scm:git:git@antmedia/ant-media-server-parent.git</connection>
+        <developerConnection>scm:git:git@github.com:ant-media/ant-media-server-parent.git</developerConnection>
     </scm>
     <developers>
     	<developer>
@@ -40,6 +35,16 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             <email>contact@antmedia.io</email>
         </developer>
     </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>central</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>central</id>
+            <url>https://central.sonatype.com</url>
+        </repository>
+    </distributionManagement>
     <properties>
     	<java.version>17</java.version>
     	<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -59,7 +64,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
         <spring-boot.version>3.5.12</spring-boot.version>
-        <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.12 expects -->
+        <!-- Keep Spring Framework aligned with Spring Boot 3.5.12. -->
         <spring.version>6.2.19</spring.version>
         <spring-security-core.version>6.5.11</spring-security-core.version>
         <mina.version>2.0.29</mina.version>
