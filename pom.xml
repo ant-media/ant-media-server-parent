@@ -58,8 +58,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
-        <spring-boot.version>3.5.12</spring-boot.version>
-        <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.12 expects -->
+        <spring-boot.version>3.5.14</spring-boot.version>
+        <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.14 expects -->
         <spring.version>6.2.19</spring.version>
         <spring-security-core.version>6.5.11</spring-security-core.version>
         <mina.version>2.0.29</mina.version>
@@ -84,7 +84,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
 		<javacpp.ndi.version>6.0.0-1.5.13</javacpp.ndi.version>
 		<jersey.version>3.1.11</jersey.version>
-		<jackson-databind.version>2.18.6</jackson-databind.version>
+		<jackson-databind.version>2.18.8</jackson-databind.version>
 		<mapdb.version>3.0.10</mapdb.version>
 		<vertx-core.version>4.5.24</vertx-core.version>
 		<jsr305.version>3.0.2</jsr305.version>      
