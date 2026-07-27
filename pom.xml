@@ -84,6 +84,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
 		<javacpp.ndi.version>6.0.0-1.5.13</javacpp.ndi.version>
 		<jersey.version>3.1.11</jersey.version>
+		<kotlin.version>2.4.10</kotlin.version>
 		<jackson-databind.version>2.18.8</jackson-databind.version>
 		<mapdb.version>3.0.10</mapdb.version>
 		<vertx-core.version>4.5.24</vertx-core.version>
@@ -198,6 +199,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
                     </exclusion>
                 </exclusions>
             </dependency>
+			<!-- Override Spring Boot's kotlin-bom (1.9.25) for transitive Kotlin stdlib -->
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-bom</artifactId>
+				<version>${kotlin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
