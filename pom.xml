@@ -58,8 +58,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
-        <spring-boot.version>3.5.12</spring-boot.version>
-        <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.12 expects -->
+        <spring-boot.version>3.5.14</spring-boot.version>
+        <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.14 expects -->
         <spring.version>6.2.19</spring.version>
         <spring-security-core.version>6.5.11</spring-security-core.version>
         <mina.version>2.0.29</mina.version>
@@ -84,7 +84,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
 		<javacpp.ndi.version>6.0.0-1.5.13</javacpp.ndi.version>
 		<jersey.version>3.1.11</jersey.version>
-		<jackson-databind.version>2.18.6</jackson-databind.version>
+		<kotlin.version>2.4.10</kotlin.version>
+		<jackson-databind.version>2.18.9</jackson-databind.version>
 		<mapdb.version>3.0.10</mapdb.version>
 		<vertx-core.version>4.5.24</vertx-core.version>
 		<jsr305.version>3.0.2</jsr305.version>      
@@ -185,6 +186,30 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- Keep Jackson ahead of Spring Boot's BOM (Boot defaults to 2.21.2) -->
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>${jackson-databind.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Keep Kotlin ahead of Spring Boot's BOM (Boot defaults to 1.9.25) -->
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-bom</artifactId>
+				<version>${kotlin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Keep Spring Framework ahead of Spring Boot's BOM (Boot defaults to 6.2.18) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -198,6 +223,73 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
                     </exclusion>
                 </exclusions>
             </dependency>
+			<!-- Override Spring Boot's Tomcat artifacts (10.1.54) -->
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-annotations-api</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-jdbc</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-jsp-api</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-servlet-api</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-catalina-ha</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-core</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-el</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-jasper</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-websocket</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<!-- Explicit pins for artifacts still resolved from Spring Boot's BOM -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-stdlib</artifactId>
+				<version>${kotlin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-stdlib-jdk7</artifactId>
+				<version>${kotlin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-stdlib-jdk8</artifactId>
+				<version>${kotlin.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
