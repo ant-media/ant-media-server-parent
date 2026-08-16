@@ -11,7 +11,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <description>Ant Media Server Parent Project</description>
     <url>https://github.com/antmedia/Ant-Media-Server</url>
     <inceptionYear>2016</inceptionYear>
-    	<parent>
+    <parent>
 		<groupId>org.red5</groupId>
 		<artifactId>red5-parent</artifactId>
 		<version>1.2.3</version>
@@ -58,9 +58,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>true</skipTests>
+        <spring-boot.version>3.5.12</spring-boot.version>
+        <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.12 expects -->
         <spring.version>6.2.19</spring.version>
-        <spring-security-core.version>6.5.9</spring-security-core.version>
-        <mina.version>2.0.28</mina.version>
+        <spring-security-core.version>6.5.11</spring-security-core.version>
+        <mina.version>2.0.29</mina.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.5.25</logback.version>
         <quartz.version>2.5.0-rc1</quartz.version>
@@ -71,7 +73,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <commons-codec.version>1.16.0</commons-codec.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <commons-io>2.15.0</commons-io>
-        <tomcat.version>10.1.55</tomcat.version>
+        <tomcat.version>10.1.57</tomcat.version>
         <smiley-http-proxy-servlet.version>2.0</smiley-http-proxy-servlet.version>
         <red5-io.version>1.2.2</red5-io.version> 
         <cors-filter.version>3.0</cors-filter.version>
@@ -80,6 +82,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.ffmpeg.version>7.1-${javacpp.version}</javacpp.ffmpeg.version>
 		<javacpp.cuda.version>12.6-9.5-${javacpp.version}</javacpp.cuda.version>
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
+		<javacpp.ndi.version>6.0.0-1.5.13</javacpp.ndi.version>
 		<jersey.version>3.1.11</jersey.version>
 		<jackson-databind.version>2.18.6</jackson-databind.version>
 		<mapdb.version>3.1.0</mapdb.version>
@@ -91,12 +94,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<mockito-core.version>5.12.0</mockito-core.version>
 		<awaitility.version>4.2.0</awaitility.version>
 		<protobuf-java.version>3.25.8</protobuf-java.version>
-		<morphia.version>2.4.13</morphia.version>
+		<morphia.version>2.5.3</morphia.version>
 		<json-simple.version>1.1.1</json-simple.version>
 		<owasp.version>12.2.2</owasp.version>
 		<selenium-java.version>4.18.1</selenium-java.version>
 		<webdrivermanager.version>6.1.0</webdrivermanager.version>
-		<netty.version>4.2.13.Final</netty.version>
+		<netty.version>4.1.136.Final</netty.version>
 		<redisson.version>3.24.3</redisson.version>
 		<gson.version>2.10.1</gson.version>
 		<jwks-rsa.version>0.22.1</jwks-rsa.version>
@@ -141,7 +144,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             <id>central-repo</id>
             <name>Central Repository</name>
             <url>https://repo.maven.apache.org/maven2</url>
-        </repository>   
+        </repository>
+        <!-- overriding the non-TLS oss.sonatype.org urls inherited from red5 parent pom -->
+        <repository>
+            <id>sonatype-snapshots</id>
+            <name>Sonatype Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>sonatype-releases</id>
+            <name>Sonatype Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </repository>
     </repositories>
     <dependencyManagement>
         <dependencies>
@@ -163,61 +177,27 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<artifactId>red5-io</artifactId>
 				<version>${red5-io.version}</version>
 			</dependency>
+			<!-- Keep Netty ahead of Spring Boot's BOM so all Netty artifacts use netty.version -->
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-				<version>${spring.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-bom</artifactId>
+				<version>${netty.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>${spring.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${spring.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${spring.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${spring.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+				<groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
@@ -248,16 +228,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			    <artifactId>spring-security-oauth2-core</artifactId>
 			    <version>${spring-security-core.version}</version>
 			</dependency>
-
-			<!-- Align all Netty artifacts (pushy, redisson, vertx, etc.) to a single version -->
-			<dependency>
-				<groupId>io.netty</groupId>
-				<artifactId>netty-bom</artifactId>
-				<version>${netty.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
 			<dependency>
 				<groupId>com.google.protobuf</groupId>
 				<artifactId>protobuf-java</artifactId>
@@ -344,14 +314,31 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             		 <waitUntil>published</waitUntil>
 		          </configuration>
 	        </plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<release>${java.version}</release>
-					<fork>true</fork>
-				</configuration>
-			</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<release>${java.version}</release>
+						<verbose>false</verbose>
+						<fork>false</fork>
+						<jdkToolchain>
+							<version>${java.version}</version>
+						</jdkToolchain>
+					</configuration>
+					<executions>
+						<execution>
+							<id>default-compile</id>
+							<configuration>
+								<release>${java.version}</release>
+								<verbose>false</verbose>
+								<fork>false</fork>
+								<jdkToolchain>
+									<version>${java.version}</version>
+								</jdkToolchain>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>${maven-source-plugin.version}</version>
@@ -376,7 +363,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 					</execution>
 				</executions>
 				<configuration>
-					<verbose>true</verbose>
+					<verbose>false</verbose>
 					<failOnError>false</failOnError>
 					<sourcepath>${basedir}/src/main/java</sourcepath>
 					<includeDependencySources>false</includeDependencySources>
@@ -385,8 +372,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 					</dependencySourceIncludes>
 					<detectOfflineLinks>false</detectOfflineLinks>
 					<links>
-						<link>http://download.oracle.com/javase/11/docs/api</link>
-						<link>http://docs.spring.io/spring/docs/${spring.version}/javadoc-api</link>
+						<link>https://download.oracle.com/javase/11/docs/api</link>
+						<link>https://docs.spring.io/spring/docs/${spring.version}/javadoc-api</link>
 					</links>
 					<tags>
 						<tag>
