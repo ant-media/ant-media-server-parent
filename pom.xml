@@ -86,7 +86,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<jersey.version>3.1.11</jersey.version>
 		<jackson-databind.version>2.18.9</jackson-databind.version>
 		<mapdb.version>3.1.0</mapdb.version>
-		<vertx-core.version>4.5.27</vertx-core.version>
+		<vertx-core.version>4.5.35</vertx-core.version>
+		<mongodb.version>5.13.0</mongodb.version>
 		<jsr305.version>3.0.2</jsr305.version>      
 		<kafka-streams.version>3.9.2</kafka-streams.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
@@ -182,6 +183,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<groupId>io.netty</groupId>
 				<artifactId>netty-bom</artifactId>
 				<version>${netty.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Override Spring Boot's MongoDB driver BOM (5.5.2) -->
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongodb-driver-bom</artifactId>
+				<version>${mongodb.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
