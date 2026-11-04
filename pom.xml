@@ -62,7 +62,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <!-- spring.version is defined in red5 parent pom, need to override that to match what spring boot 3.5.12 expects -->
         <spring.version>6.2.19</spring.version>
         <spring-security-core.version>6.5.11</spring-security-core.version>
-        <mina.version>2.0.29</mina.version>
+        <mina.version>2.0.31</mina.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.5.25</logback.version>
         <quartz.version>2.5.0-rc1</quartz.version>
@@ -73,7 +73,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <commons-codec.version>1.16.0</commons-codec.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <commons-io>2.15.0</commons-io>
-        <tomcat.version>10.1.60</tomcat.version>
+        <tomcat.version>10.1.61</tomcat.version>
         <smiley-http-proxy-servlet.version>2.0</smiley-http-proxy-servlet.version>
         <red5-io.version>1.2.2</red5-io.version> 
         <cors-filter.version>3.0</cors-filter.version>
@@ -84,12 +84,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<javacpp.srt.version>1.5.3-${javacpp.version}</javacpp.srt.version>
 		<javacpp.ndi.version>6.0.0-1.5.13-antmedia1</javacpp.ndi.version>
 		<jersey.version>3.1.11</jersey.version>
-		<jackson-databind.version>2.18.9</jackson-databind.version>
+		<jackson-bom.version>2.21.7</jackson-bom.version>
+		<jackson-databind.version>${jackson-bom.version}</jackson-databind.version>
 		<mapdb.version>3.1.0</mapdb.version>
 		<vertx-core.version>4.5.35</vertx-core.version>
 		<mongodb.version>5.13.0</mongodb.version>
 		<jsr305.version>3.0.2</jsr305.version>      
 		<kafka-streams.version>3.9.2</kafka-streams.version>
+		<snappy-java.version>1.1.10.9</snappy-java.version>
+		<lz4-java.version>1.11.4</lz4-java.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
 		<httpmime.version>4.5.14</httpmime.version>
 		<mockito-core.version>5.12.0</mockito-core.version>
@@ -161,6 +164,25 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     </repositories>
     <dependencyManagement>
         <dependencies>
+            <!-- Keep Jackson ahead of other BOMs to align core, databind and dataformats. -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Security overrides for compression libraries brought in by Kafka clients. -->
+            <dependency>
+                <groupId>org.xerial.snappy</groupId>
+                <artifactId>snappy-java</artifactId>
+                <version>${snappy-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>at.yawk.lz4</groupId>
+                <artifactId>lz4-java</artifactId>
+                <version>${lz4-java.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>com.amazonaws</groupId>
 				<artifactId>aws-java-sdk-bom</artifactId>
