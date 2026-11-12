@@ -37,6 +37,7 @@ jobs:
           cd ..
 
   deploy:
+    if: startsWith(github.ref, 'refs/tags/ams-v')
     runs-on: ubuntu-22.04
     needs: run-test
     env:
